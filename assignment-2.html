@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <title>Assignment 2</title>
+    <style>
+        .btn {
+            padding: 6px 12px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .btn:disabled {
+            cursor: no-drop;
+            opacity: 0.5;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container pt-3 pb-3">
+        <h1>Click the button to get the data from JSON - [Posts]</h1>
+        <button type="button" onclick="getPosts()" class="btn btn-outline-dark" id="get-data">Get Data</button>
+        <div id="myData"></div>
+    </section>
+    <script>
+        const URL = "https://jsonplaceholder.typicode.com/posts";
+
+        function getPosts() {
+            var btn = document.getElementById("get-data");
+            btn.setAttribute("disabled", "");
+
+            fetch(URL)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    getData(data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+
+        function getData(data) {
+            let mainContainer = document.getElementById("myData");
+            for (var i = 0; i < data.length; i++) {
+                var title = document.createElement("h2");
+                var body = document.createElement("p");
+                title.innerHTML = data[i].title;
+                body.innerHTML = data[i].body;
+                mainContainer.appendChild(title);
+                mainContainer.appendChild(body);
+            }
+        }
+    </script>
+</body>
+
+</html>
