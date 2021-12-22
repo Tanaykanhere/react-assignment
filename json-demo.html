@@ -29,14 +29,14 @@
 
 <body>
     <section class="container pt-3 pb-3">
-        <h1>Click the button to get the data from JSON - [Users]</h1>
+        <h1>Click the button to get the data from JSON - [Todos]</h1>
         <button type="button" onclick="getUsers()" class="btn btn-outline-dark" id="get-data">Get Data</button>
-        <div id="myData" class="mt-3">
+        <div id="myData" class="mt-3" style="display: none;">
             <table class="table table-bordered">
                 <thead>
-                    <th>S.No</th>
+                    <th width="15%">S.No</th>
                     <th>Title</th>
-                    <th>Completed</th>
+                    <th width="20%">Completed</th>
                 </thead>
                 <tbody id="table-data">
 
@@ -50,6 +50,7 @@
         function getUsers() {
             var btn = document.getElementById("get-data");
             btn.setAttribute("disabled", "");
+            
 
             fetch(URL)
                 .then(res => res.json())
@@ -78,6 +79,8 @@
                 tableRow.append(srNo, title, completed);
                 tableBody.appendChild(tableRow);
             });
+
+            document.getElementById("myData").style.display = "block";
         }
     </script>
 </body>

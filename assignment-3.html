@@ -53,8 +53,7 @@
         function getUsers() {
             var btn = document.getElementById("get-data");
             btn.setAttribute("disabled", "");
-            document.getElementById("myData").style.display = "block";
-            
+
             fetch(URL)
                 .then(res => res.json())
                 .then(data => {
@@ -90,6 +89,8 @@
                 tableRow.append(srNo, name, email, username, phone, site);
                 tableBody.appendChild(tableRow);
             });
+
+            document.getElementById("myData").style.display = "block";
         }
     </script>
 </body>
